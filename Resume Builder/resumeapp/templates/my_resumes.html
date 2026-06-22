@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Resumes</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f2f2f2;
+            padding:40px;
+        }
+
+        h1{
+            text-align:center;
+            color:#4e54c8;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            margin:20px auto;
+            width:600px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+        }
+
+        .btn{
+            padding:10px 15px;
+            text-decoration:none;
+            color:white;
+            border-radius:5px;
+            margin-right:10px;
+        }
+
+        .view{
+            background:green;
+        }
+
+        .delete{
+            background:red;
+        }
+
+        .download{
+            background:blue;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>My Resumes</h1>
+
+{% for resume in resumes %}
+
+<div class="card">
+
+    <h2>{{ resume.name }}</h2>
+
+    <p>{{ resume.title }}</p>
+
+    <a class="btn view"
+       href="/view/{{ resume.id }}/">
+       View Resume
+    </a>
+
+    <a class="btn download"
+       href="/download/{{ resume.id }}/">
+       Download PDF
+    </a>
+
+    <a class="btn delete"
+       href="/delete/{{ resume.id }}/">
+       Delete Resume
+    </a>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

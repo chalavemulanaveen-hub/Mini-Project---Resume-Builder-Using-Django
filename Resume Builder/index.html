@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="title" style="text-align:center;">Welcome to Free Resume Builder</h1>
+<h2 class="title" style="text-align:center;">Choose Your Resume Template</h2>
+
+<div class="template-grid" style="
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-top:40px;
+    flex-wrap:wrap;
+">
+
+    <!-- TEMPLATE 1 -->
+    <div class="template-card"
+         onclick="selectTemplate('template1')"
+         style="width:250px; cursor:pointer; text-align:center; background:white; padding:15px; border-radius:10px; box-shadow:0px 0px 10px #ccc;">
+
+        <img src="/static/assets/template1-preview.png"
+             style="width:100%; border-radius:10px;">
+
+        <p>Professional Resume</p>
+    </div>
+
+    <!-- TEMPLATE 2 -->
+    <div class="template-card"
+         onclick="selectTemplate('template2')"
+         style="width:250px; cursor:pointer; text-align:center; background:white; padding:15px; border-radius:10px; box-shadow:0px 0px 10px #ccc;">
+
+        <img src="/static/assets/template2-preview.png"
+             style="width:100%; border-radius:10px;">
+
+        <p>Modern Resume</p>
+    </div>
+
+</div>
+
+<script>
+    function selectTemplate(templateName) {
+        localStorage.setItem('selectedTemplate', templateName);
+        window.location.href = '/form/';
+    }
+</script>
+
+{% endblock %}

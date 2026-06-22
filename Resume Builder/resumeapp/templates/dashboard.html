@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Dashboard</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#f4f6f9;
+        }
+
+        .navbar{
+            background:#4e54c8;
+            color:white;
+            padding:20px;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        .navbar a{
+            color:white;
+            text-decoration:none;
+            margin-left:20px;
+        }
+
+        .container{
+            text-align:center;
+            margin-top:100px;
+        }
+
+        .card{
+            background:white;
+            width:600px;
+            margin:auto;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 0 15px gray;
+        }
+
+        .btn{
+            display:inline-block;
+            margin:10px;
+            padding:15px 30px;
+            background:#4e54c8;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Resume Builder</h2>
+
+    <div>
+
+        Welcome {{ request.user.username }}
+
+        <a href="/logout/">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>
+            Welcome, {{ request.user.username }}
+        </h1>
+
+        <p>
+            Build your professional resume.
+        </p>
+
+        <a class="btn" href="/home/">
+            Select Template
+        </a>
+
+        <a class="btn" href="/form/">
+            Create Resume
+        </a>
+
+        <a class="btn" href="/my-resumes/">
+            My Resumes
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

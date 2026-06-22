@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Template 2</title>
+</head>
+
+<body>
+
+<div class="resume-template"
+     style="font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            color: #333;
+            width: 800px;
+            margin: auto;">
+
+    <div style="border:2px solid #4e5df2;
+                padding:20px;
+                border-radius:10px;">
+
+        <h1 style="color:#000;">
+            {{ resume.name }}
+        </h1>
+
+        <h3 style="color:#4e5df2;">
+            {{ resume.title }}
+        </h3>
+
+        <p>
+            <b>Email:</b>
+            {{ resume.email }}
+
+            |
+
+            <b>Phone:</b>
+            {{ resume.phone }}
+        </p>
+
+        <p>
+            <b>Address:</b>
+            {{ resume.address }}
+        </p>
+
+        <hr>
+
+        <h2 style="color:#4e5df2;">
+            Summary
+        </h2>
+
+        <p>
+            {{ resume.summary }}
+        </p>
+
+        <h2 style="color:#4e5df2;">
+            Education
+        </h2>
+
+        <p>
+            {{ resume.education }}
+        </p>
+
+        <h2 style="color:#4e5df2;">
+            Experience
+        </h2>
+
+        <p>
+            {{ resume.experience }}
+        </p>
+
+        <h2 style="color:#4e5df2;">
+            Skills
+        </h2>
+
+        <p>
+            {{ resume.skills }}
+        </p>
+
+        <br><br>
+
+        <button onclick="downloadPDF()">
+            Download PDF
+        </button>
+
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+function downloadPDF() {
+
+    const resume =
+        document.querySelector(".resume-template");
+
+    html2canvas(resume).then(function(canvas) {
+
+        const imgData =
+            canvas.toDataURL("image/png");
+
+        const pdf =
+            new jspdf.jsPDF("p", "mm", "a4");
+
+        const imgWidth = 210;
+
+        const imgHeight =
+            (canvas.height * imgWidth)
+            / canvas.width;
+
+        pdf.addImage(
+            imgData,
+            "PNG",
+            0,
+            0,
+            imgWidth,
+            imgHeight
+        );
+
+        pdf.save("resume.pdf");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

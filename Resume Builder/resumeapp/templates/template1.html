@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Template 1</title>
+</head>
+
+<body>
+
+<div class="resume-template"
+     style="font-family: Arial;
+            padding: 20px;
+            width: 800px;
+            margin: auto;">
+
+    <h1>{{ resume.name }}</h1>
+
+    <h3>{{ resume.title }}</h3>
+
+    <p>
+        <strong>Email:</strong>
+        {{ resume.email }}
+
+        |
+
+        <strong>Phone:</strong>
+        {{ resume.phone }}
+    </p>
+
+    <p>
+        <strong>Address:</strong>
+        {{ resume.address }}
+    </p>
+
+    <hr>
+
+    <h2>Profile</h2>
+
+    <p>
+        {{ resume.summary }}
+    </p>
+
+    <h2>Education</h2>
+
+    <p>
+        {{ resume.education }}
+    </p>
+
+    <h2>Experience</h2>
+
+    <p>
+        {{ resume.experience }}
+    </p>
+
+    <h2>Skills</h2>
+
+    <p>
+        {{ resume.skills }}
+    </p>
+
+    <br><br>
+
+    <button onclick="downloadPDF()">
+        Download PDF
+    </button>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+function downloadPDF() {
+
+    const resume =
+        document.querySelector(".resume-template");
+
+    html2canvas(resume).then(function(canvas) {
+
+        const imgData =
+            canvas.toDataURL("image/png");
+
+        const pdf =
+            new jspdf.jsPDF("p", "mm", "a4");
+
+        const imgWidth = 210;
+
+        const imgHeight =
+            (canvas.height * imgWidth)
+            / canvas.width;
+
+        pdf.addImage(
+            imgData,
+            "PNG",
+            0,
+            0,
+            imgWidth,
+            imgHeight
+        );
+
+        pdf.save("resume.pdf");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

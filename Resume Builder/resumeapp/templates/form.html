@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Resume</title>
+  <link rel="stylesheet"
+      href="{% static 'style.css' %}">
+</head>
+<body>
+  <h1 class="title">Fill Your Resume Details</h1>
+  <div class="form-container">
+    <form method="POST">
+    {% csrf_token %}
+      <input type="text" id="name" name="name" placeholder="Full Name" required>
+      <input type="text" id="title" name="title" placeholder="Job Title">
+      <input type="text" id="email" name="email" placeholder="Email">
+      <input type="text" id="phone" name="phone" placeholder="Phone">
+      <input type="text" id="address" name="address" placeholder="Address">
+      <textarea id="summary" name="summary" placeholder="Professional Summary"></textarea>
+      <textarea id="education" name="education" placeholder="Education Details"></textarea>
+      <textarea id="experience" name="experience" placeholder="Work Experience"></textarea>
+      <textarea id="skills" name="skills" placeholder="Skills (comma separated)"></textarea>
+      <input type="hidden" name="template" id="template">
+      <button type="submit">
+    Generate Resume
+</button>
+    </form>
+  </div>
+  <div id="resumePreview" class="preview-container"></div>
+  <button id="downloadBtn" style="display:none;" onclick="downloadPDF()">Download PDF</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+
+document.getElementById("template").value =
+    localStorage.getItem("selectedTemplate");
+
+</script>
+</body>
+</html>
